@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  Archivo: adminClientesForm.fxml
+  Descripción: Formulario alta/edición de clientes
+-->
+
+<VBox fx:id="customerForm" alignment="TOP_CENTER" fillWidth="false" prefHeight="458.0" prefWidth="370.0" spacing="15.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.AdminClientesFormController">
+
+    <!-- … tu GridPane con campos … -->
+    <GridPane hgap="15" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <children>
+            <Label text="Nombre y apellido:">
+            <GridPane.margin>
+               <Insets top="25.0" />
+            </GridPane.margin></Label>
+            <TextField fx:id="tfName" GridPane.columnIndex="1">
+            <GridPane.margin>
+               <Insets top="25.0" />
+            </GridPane.margin></TextField>
+
+            <Label text="Tipo doc.:" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cbDocType" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="N° documento:" GridPane.rowIndex="2" />
+            <TextField fx:id="tfDocNumber" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="CUIT:" GridPane.rowIndex="3" />
+            <TextField fx:id="tfCuit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <Label text="Condición AFIP:" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cbAfip" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <Label text="Género:" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cbGender" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <Label text="Fecha Nac.:" GridPane.rowIndex="6" />
+            <DatePicker fx:id="dpBirthdate" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+            <Label text="Dirección:" GridPane.rowIndex="7" />
+            <TextField fx:id="tfAddress" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+            <Label text="Email:" GridPane.rowIndex="8" />
+            <TextField fx:id="tfEmail" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+            <Label text="Teléfonos:" GridPane.rowIndex="9" />
+            <TextField fx:id="tfPhone" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+        </children>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <HBox alignment="CENTER" spacing="15">
+        <children>
+            <Button onAction="#handleCancel" text="Volver a Clientes" />
+            <Button onAction="#handleSave" text="Guardar" />
+            <Button onAction="#handleBackToMenu" text="Volver al Menú" />
+        </children>
+    </HBox>
+</VBox>

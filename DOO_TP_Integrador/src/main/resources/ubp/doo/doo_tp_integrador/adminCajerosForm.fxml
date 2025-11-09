@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: admin_employee_form.fxml
+  Descripción: Formulario alta/edición de empleados (cajeros)
+-->
+
+<VBox fx:id="employeeForm"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.admin.EmployeeFormController"
+      alignment="TOP_CENTER" spacing="15.0">
+
+    <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+
+    <Label fx:id="lblTitle" text="Nuevo Empleado" styleClass="title"/>
+
+    <GridPane hgap="15" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <children>
+            <Label text="Nombre y apellido:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Tipo doc.:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbDocType" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="N° documento:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfDocNumber" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="CUIT:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfCuit" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Condición AFIP:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbAfip" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Género:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbGender" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Fecha nacimiento:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dpBirthdate" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <Label text="Domicilio:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfAddress" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+            <Label text="Email:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfEmail" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+            <Label text="Teléfonos:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfPhone" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+            <Label text="Cargo:" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfPosition" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+
+            <Label text="Usuario:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfUsername" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+
+            <Label text="Contraseña:" GridPane.rowIndex="12" GridPane.columnIndex="0"/>
+            <PasswordField fx:id="pfPassword" GridPane.rowIndex="12" GridPane.columnIndex="1"/>
+        </children>
+    </GridPane>
+
+    <HBox spacing="15" alignment="CENTER">
+        <children>
+            <Button text="Cancelar" onAction="#handleCancel"/>
+            <Button text="Guardar"  onAction="#handleSave"/>
+        </children>
+    </HBox>
+</VBox>

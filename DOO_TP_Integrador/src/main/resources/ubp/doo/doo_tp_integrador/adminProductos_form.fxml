@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: admin_product_form.fxml
+  Descripción: Formulario de alta/edición de productos
+-->
+
+<VBox fx:id="productForm"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.admin.ProductFormController"
+      alignment="TOP_CENTER" spacing="15.0">
+
+    <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+
+    <Label fx:id="lblTitle" text="Nuevo Producto" styleClass="title"/>
+
+    <GridPane hgap="15" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <children>
+            <Label text="Código barras:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfBarcode" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfName" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Marca:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfBrand" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Stock:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfStock" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Precio:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfPrice" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        </children>
+    </GridPane>
+
+    <HBox spacing="15" alignment="CENTER">
+        <children>
+            <Button text="Cancelar" onAction="#handleCancel"/>
+            <Button text="Guardar"  onAction="#handleSave"/>
+        </children>
+    </HBox>
+</VBox>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  Archivo: cashierPayment.fxml
+  Descripción: Pantalla de selección de medio de pago y confirmación
+-->
+
+<ScrollPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controladores.CashierPaymentController"
+            fitToWidth="true" fitToHeight="true">
+
+    <content>
+        <VBox alignment="TOP_CENTER" spacing="20.0">
+            <fx:define>
+                <ToggleGroup fx:id="tgPayment" />
+            </fx:define>
+
+            <padding>
+                <Insets bottom="20" left="25" right="25" top="20" />
+            </padding>
+
+            <!-- Título -->
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Procesamiento de Pago" />
+
+            <!-- Mostrar total -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Label text="Total a pagar:" />
+                <Label fx:id="lblTotal" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2E8B57;" />
+            </HBox>
+
+            <!-- Métodos de pago -->
+            <VBox spacing="10.0">
+                <Label text="Seleccione medio de pago:" />
+                <RadioButton fx:id="rbCash" selected="true" text="Contado">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="tgPayment" />
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="rbDebit" text="Débito" toggleGroup="$tgPayment" />
+                <RadioButton fx:id="rbCredit" text="Crédito" toggleGroup="$tgPayment" />
+            </VBox>
+
+            <!-- Campo para número de tarjeta (solo visible para Débito y Crédito) -->
+            <VBox fx:id="vboxCardNumber" managed="false" spacing="10.0" visible="false">
+                <Label text="Número de tarjeta:" />
+                <TextField fx:id="tfCardNumber" prefWidth="200.0" promptText="Ingrese el número de tarjeta" />
+            </VBox>
+
+            <!-- Campo para ingresar monto pagado -->
+            <VBox fx:id="vboxPaidAmount" spacing="10.0">
+                <Label fx:id="lblPaidAmountLabel" text="Monto pagado:" />
+                <TextField fx:id="tfPaidAmount" prefWidth="200.0" promptText="Ingrese el monto pagado" />
+            </VBox>
+
+            <!-- Mostrar vuelto -->
+            <HBox fx:id="hboxChange" alignment="CENTER" spacing="10.0">
+                <Label fx:id="lblChangeLabel" text="Vuelto:" />
+                <Label fx:id="lblChange" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="-" />
+            </HBox>
+
+            <!-- Separador -->
+            <Separator />
+
+            <!-- Botones -->
+            <HBox alignment="CENTER" spacing="15.0">
+                <Button fx:id="btnBackToSale" onAction="#backToSale" text="Volver" />
+                <Button fx:id="btnCancelSale" onAction="#cancelSale" text="Cancelar" />
+                <Button fx:id="btnConfirmPayment" onAction="#confirmPayment" text="Confirmar pago" />
+            </HBox>
+        </VBox>
+    </content>
+</ScrollPane>

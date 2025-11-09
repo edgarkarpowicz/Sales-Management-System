@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: admin_dashboard.fxml
+  Descripción: Vista de indicadores principales
+-->
+
+<VBox fx:id="dashboardPane"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.admin.AdminDashboardController"
+      alignment="TOP_CENTER" spacing="20.0">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <Label text="Dashboard" styleClass="title"/>
+
+    <GridPane hgap="25" vgap="25">
+        <children>
+            <TitledPane text="Ventas hoy" expanded="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <content><Label fx:id="lblSalesToday" text="0.00"/></content>
+            </TitledPane>
+            <TitledPane text="Total productos" expanded="false" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <content><Label fx:id="lblProdCount" text="0"/></content>
+            </TitledPane>
+            <TitledPane text="Clientes registrados" expanded="false" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <content><Label fx:id="lblCustCount" text="0"/></content>
+            </TitledPane>
+            <TitledPane text="Cajeros activos" expanded="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <content><Label fx:id="lblCashierCount" text="0"/></content>
+            </TitledPane>
+        </children>
+    </GridPane>
+</VBox>

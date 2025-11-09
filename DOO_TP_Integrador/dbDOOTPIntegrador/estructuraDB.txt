@@ -1,0 +1,128 @@
+-- Enable foreign keys
+PRAGMA foreign_keys = ON;
+
+-- Domicilio
+CREATE TABLE Domicilio (
+    idDomicilio INTEGER PRIMARY KEY,
+    nomCalle TEXT NOT NULL,
+    numVivienda INTEGER NOT NULL,
+    numDepartamento INTEGER NOT NULL,
+    codPostal INTEGER NOT NULL,
+    localidad TEXT NOT NULL,
+    departamento TEXT NOT NULL,
+    pais TEXT NOT NULL
+);
+
+-- Persona
+CREATE TABLE Persona (
+    idPersona INTEGER PRIMARY KEY,
+    idDomicilio INTEGER NOT NULL,
+    nombre TEXT NOT NULL,
+    apellido TEXT NOT NULL,
+    numDocumento TEXT NOT NULL,
+    tipoDocumento TEXT NOT NULL,
+    cuit TEXT NOT NULL,
+    condicionAfip TEXT NOT NULL,
+    genero TEXT NOT NULL,
+    fechaNacimiento TEXT NOT NULL,
+    email TEXT NOT NULL,
+    FOREIGN KEY (idDomicilio) REFERENCES Domicilio(idDomicilio)
+);
+
+-- Telefono
+CREATE TABLE Telefono (
+    idTelefono INTEGER PRIMARY KEY,
+    nroTelefono TEXT NOT NULL
+);
+
+-- TelefonosAsignados
+CREATE TABLE TelefonosAsignados (
+    idTelefono INTEGER NOT NULL,
+    idPersona INTEGER NOT NULL,
+    PRIMARY KEY (idTelefono, idPersona),
+    FOREIGN KEY (idTelefono) REFERENCES Telefono(idTelefono),
+    FOREIGN KEY (idPersona) REFERENCES Persona(idPersona)
+);
+
+-- Cliente
+CREATE TABLE Cliente (
+    idCliente INTEGER PRIMARY KEY,
+    idPersona INTEGER NOT NULL,
+    FOREIGN KEY (idPersona) REFERENCES Persona(idPersona)
+);
+
+-- Usuario
+CREATE TABLE Usuario (
+    idUsuario INTEGER PRIMARY KEY,
+    idPersona INTEGER NOT NULL,
+    login TEXT NOT NULL,
+    password TEXT NOT NULL,
+    fechaUltAcceso TEXT NOT NULL,
+    FOREIGN KEY (idPersona) REFERENCES Persona(idPersona)
+);
+
+-- Cajero
+CREATE TABLE Cajero (
+    idCajero INTEGER PRIMARY KEY,
+    idUsuario INTEGER NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
+
+-- Administracion
+CREATE TABLE Administracion (
+    idAdministracion INTEGER PRIMARY KEY,
+    idUsuario INTEGER NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
+
+-- Descuento
+CREATE TABLE Descuento (
+    idDescuento INTEGER PRIMARY KEY,
+    tipo TEXT NOT NULL CHECK (tipo IN ('porcentual_factura_emitida', 'monto_factura_emitida')),
+    valor REAL NOT NULL
+);
+
+-- Factura
+CREATE TABLE Factura (
+    idFactura INTEGER PRIMARY KEY,
+    fechaEmitida TEXT NOT NULL,
+    totalFactura REAL NOT NULL
+);
+
+-- Producto
+CREATE TABLE Producto (
+    idProducto INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    stock INTEGER NOT NULL,
+    precio REAL NOT NULL,
+    marca TEXT NOT NULL,
+    codigoBarras TEXT NOT NULL
+);
+
+-- Venta
+CREATE TABLE Venta (
+    idVenta INTEGER PRIMARY KEY,
+    idCliente INTEGER NOT NULL,
+    idCajero INTEGER NOT NULL,
+    idDescuento INTEGER NOT NULL,
+    idFactura INTEGER, -- This is the ONLY nullable field
+    noTarjeta TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    estado TEXT NOT NULL CHECK (
+        estado IN ('Creada', 'Agregando', 'MedioPagoIngresado', 'Pago', 'Completada', 'RechazadaOCancelada')
+    ),
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
+    FOREIGN KEY (idCajero) REFERENCES Cajero(idCajero),
+    FOREIGN KEY (idDescuento) REFERENCES Descuento(idDescuento),
+    FOREIGN KEY (idFactura) REFERENCES Factura(idFactura)
+);
+
+-- DetallesVenta
+CREATE TABLE DetallesVenta (
+    idVenta INTEGER NOT NULL,
+    idProducto INTEGER NOT NULL,
+    cantidad INTEGER NOT NULL,
+    PRIMARY KEY (idVenta, idProducto),
+    FOREIGN KEY (idVenta) REFERENCES Venta(idVenta),
+    FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
+);

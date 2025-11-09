@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: admin_reports.fxml
+  Descripción: Generador de informes (ventas y stock)
+-->
+
+<VBox fx:id="reportsPane"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.admin.AdminReportsController"
+      alignment="TOP_CENTER" spacing="20.0">
+
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <Label text="Informes" styleClass="title"/>
+
+    <HBox spacing="10.0">
+        <children>
+            <Button text="Ventas diarias"     onAction="#reportDailySales"/>
+            <Button text="Ventas por cajero"  onAction="#reportSalesByCashier"/>
+            <Button text="Estado de stock"    onAction="#reportStock"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Volver" onAction="#handleBack"/>
+        </children>
+    </HBox>
+
+    <TableView fx:id="tvReport" prefHeight="550.0" VBox.vgrow="ALWAYS"/>
+</VBox>

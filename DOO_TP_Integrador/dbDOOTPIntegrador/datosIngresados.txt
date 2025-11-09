@@ -1,0 +1,60 @@
+-- Test data for SQLite database
+
+-- Insert test addresses
+INSERT INTO Domicilio (nomCalle, numVivienda, numDepartamento, codPostal, localidad, departamento, pais) VALUES
+('Av. San Martín', 1234, 5, 5000, 'Villa Carlos Paz', 'Córdoba', 'Argentina'),
+('Calle Belgrano', 567, 2, 5000, 'Villa Carlos Paz', 'Córdoba', 'Argentina'),
+('Av. Libertad', 890, 8, 5000, 'Villa Carlos Paz', 'Córdoba', 'Argentina');
+
+-- Insert test phone numbers
+INSERT INTO Telefono (nroTelefono) VALUES
+('+54 351 123-4567'),
+('+54 351 987-6543'),
+('+54 351 456-7890');
+
+-- Insert test people (for Cliente, Cajero, and Administracion)
+INSERT INTO Persona (idDomicilio, nombre, apellido, numDocumento, tipoDocumento, cuit, condicionAfip, genero, fechaNacimiento, email) VALUES
+-- Cliente person
+(1, 'Juan Carlos', 'Pérez', '12345678', 'DNI', '20-12345678-9', 'Responsable Inscripto', 'Masculino', '1985-03-15', 'juan.perez@email.com'),
+-- Cajero person  
+(2, 'María', 'González', '23456789', 'DNI', '27-23456789-3', 'Monotributista', 'Femenino', '1990-07-22', 'maria.gonzalez@email.com'),
+-- Administracion person
+(3, 'Roberto', 'Silva', '34567890', 'DNI', '20-34567890-4', 'Responsable Inscripto', 'Masculino', '1982-11-08', 'roberto.silva@email.com');
+
+-- Assign phone numbers to people
+INSERT INTO TelefonosAsignados (idTelefono, idPersona) VALUES
+(1, 1), -- Juan Carlos
+(2, 2), -- María
+(3, 3); -- Roberto
+
+-- Insert test Cliente
+INSERT INTO Cliente (idPersona) VALUES (1);
+
+-- Insert test Usuario records (needed for Cajero and Administracion)
+INSERT INTO Usuario (idPersona, login, password, fechaUltAcceso) VALUES
+(2, 'mgonzalez', 'hashed_password_123', '2025-06-01 10:30:00'),
+(3, 'rsilva', 'hashed_password_456', '2025-06-01 09:15:00');
+
+-- Insert test Cajero
+INSERT INTO Cajero (idUsuario) VALUES (1);
+
+-- Insert test Administracion
+INSERT INTO Administracion (idUsuario) VALUES (2);
+
+-- Insert the 2 possible Descuentos
+INSERT INTO Descuento (tipo, valor) VALUES
+('porcentual_factura_emitida', 15.0),
+('monto_factura_emitida', 500.0);
+
+-- Insert 10 test Products
+INSERT INTO Producto (nombre, stock, precio, marca, codigoBarras) VALUES
+('Coca Cola 500ml', 150, 350.00, 'Coca Cola', '7790895001234'),
+('Pan Lactal', 80, 280.00, 'Bimbo', '7790895002345'),
+('Leche Entera 1L', 120, 420.00, 'La Serenísima', '7790895003456'),
+('Arroz Largo Fino 1kg', 200, 180.00, 'Gallo', '7790895004567'),
+('Aceite Girasol 900ml', 75, 650.00, 'Natura', '7790895005678'),
+('Fideos Espaguetis 500g', 100, 220.00, 'Matarazzo', '7790895006789'),
+('Azúcar Común 1kg', 90, 320.00, 'Ledesma', '7790895007890'),
+('Café Molido 250g', 60, 890.00, 'La Virginia', '7790895008901'),
+('Shampoo Anticaspa 400ml', 45, 1250.00, 'Head & Shoulders', '7790895009012'),
+('Papel Higiénico x4', 110, 480.00, 'Higienol', '7790895010123');

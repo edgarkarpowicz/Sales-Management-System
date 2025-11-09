@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: admin_cajeros.fxml
+  Descripción: Gestión de cajeros
+-->
+
+<VBox fx:id="cajerosPane"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.admin.AdminCashiersController"
+      alignment="TOP_CENTER" spacing="15.0">
+
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <!-- Título y barra -->
+    <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <children>
+            <Label text="Gestión de Cajeros" styleClass="title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Agregar"   onAction="#handleAdd"/>
+            <Button text="Editar"  onAction="#handleEdit"/>
+            <Button text="Eliminar"   onAction="#handleDelete"/>
+            <Button text="Volver"      onAction="#handleBack"/>
+        </children>
+    </HBox>
+
+    <!-- Tabla -->
+    <TableView fx:id="tableCajeros" prefHeight="550.0" VBox.vgrow="ALWAYS">
+        <TableColumn fx:id="colName" text="Nombre" prefWidth="180"/>
+        <TableColumn fx:id="colUser" text="Usuario" prefWidth="120"/>
+        <TableColumn fx:id="colLastAccess" text="Último acceso" prefWidth="150"/>
+        <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+        <TableColumn fx:id="colPhone" text="Teléfono" prefWidth="120"/>
+    </TableView>
+</VBox>

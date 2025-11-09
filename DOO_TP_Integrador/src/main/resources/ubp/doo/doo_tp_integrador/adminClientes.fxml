@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: admin_clientes.fxml
+  Descripción: Gestión de clientes
+-->
+
+<VBox fx:id="clientesPane"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controladores.AdminClientesController"
+      alignment="TOP_CENTER" spacing="15.0">
+
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <!-- Título y barra -->
+    <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <children>
+            <Label text="Gestión de Clientes" styleClass="title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Recargar"   onAction="#handleReload"/>
+            <Button text="Agregar"    onAction="#handleAdd"/>
+            <Button text="Eliminar"   onAction="#handleDelete"/>
+            <Button text="Volver al Menú"     onAction="#handleBack"/>
+        </children>
+    </HBox>
+
+    <!-- Tabla -->
+    <TableView fx:id="tblClientes" prefHeight="550.0" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"        text="Id"        prefWidth="80.0"/>
+            <TableColumn fx:id="colNombre"    text="Nombre"    prefWidth="150.0"/>
+            <TableColumn fx:id="colDocumento" text="Documento" prefWidth="120.0"/>
+            <TableColumn fx:id="colApellido"  text="Apellido"  prefWidth="150.0"/>
+        </columns>
+    </TableView>
+</VBox>

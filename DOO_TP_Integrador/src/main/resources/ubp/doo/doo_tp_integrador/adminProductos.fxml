@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: admin_productos.fxml
+  Descripción: Gestión de productos
+-->
+
+<VBox fx:id="productosPane"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.admin.AdminProductsController"
+      alignment="TOP_CENTER" spacing="15.0">
+
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <!-- Título y barra -->
+    <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <children>
+            <Label text="Gestión de Productos" styleClass="title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Agregar"   onAction="#handleAdd"/>
+            <Button text="Editar"  onAction="#handleEdit"/>
+            <Button text="Eliminar"   onAction="#handleDelete"/>
+            <Button text="Volver"      onAction="#handleBack"/>
+        </children>
+    </HBox>
+
+    <!-- Tabla -->
+    <TableView fx:id="tableProductos" prefHeight="550.0" VBox.vgrow="ALWAYS">
+        <TableColumn fx:id="colBarcode" text="Código Barras" prefWidth="140"/>
+        <TableColumn fx:id="colName" text="Nombre" prefWidth="160"/>
+        <TableColumn fx:id="colBrand" text="Marca" prefWidth="120"/>
+        <TableColumn fx:id="colStock" text="Stock" prefWidth="80"/>
+        <TableColumn fx:id="colPrice" text="Precio" prefWidth="100"/>
+    </TableView>
+</VBox>

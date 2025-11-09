@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: cashierRoot.fxml
+  Descripción: Pantalla principal del cajero. Muestra ventas existentes y
+               permite iniciar una nueva venta. El StackPane contentPane se
+               usa para cargar dinámicamente cashier_sale/payment/confirm.
+-->
+
+<BorderPane fx:id="root"
+            prefWidth="900.0" prefHeight="650.0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controladores.CashierRootController">
+
+    <!-- ───── Barra superior ───── -->
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu text="Sesión">
+                    <items>
+                        <MenuItem text="Cerrar sesión" onAction="#handleLogout"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+
+    <!-- ───── Contenido dinámico ───── -->
+    <center>
+        <StackPane fx:id="contentPane" BorderPane.alignment="CENTER">
+
+            <!-- Vista por defecto: listado de ventas -->
+            <VBox fx:id="salesPane" alignment="TOP_CENTER" spacing="15.0">
+                <padding>
+                    <Insets top="20" right="25" bottom="20" left="25"/>
+                </padding>
+
+                <Label text="Ventas realizadas" styleClass="title"/>
+
+                <TableView fx:id="tvSales" prefHeight="450.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn text="ID Venta"     fx:id="colSaleId"   prefWidth="80"/>
+                        <TableColumn text="N° Factura"   fx:id="colInvoice"  prefWidth="100"/>
+                        <TableColumn text="Fecha/Hora"   fx:id="colDate"     prefWidth="150"/>
+                        <TableColumn text="Cliente"      fx:id="colClient"   prefWidth="200"/>
+                        <TableColumn text="Total"        fx:id="colTotal"    prefWidth="100"/>
+                        <TableColumn text="Medio Pago"   fx:id="colMethod"   prefWidth="120"/>
+                        <TableColumn text="N° Tarjeta"   fx:id="colCardNo"   prefWidth="120"/>
+                        <TableColumn text="Estado"       fx:id="colStatus"   prefWidth="120"/>
+                        <TableColumn text="Descuento"    fx:id="colDiscount" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <Button text="Iniciar Venta" fx:id="btnNewSale" onAction="#startSale"/>
+            </VBox>
+
+        </StackPane>
+    </center>
+
+    <!-- ───── Barra de estado ───── -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="6.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Caja:"/>
+                <Label fx:id="lblCashier" text="—"/>
+            </children>
+            <padding>
+                <Insets top="5" right="12" bottom="5" left="12"/>
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>

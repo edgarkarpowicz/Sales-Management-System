@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Archivo: admin_root.fxml
+  Descripción: layout principal para administrador con barra lateral de navegación
+-->
+
+<BorderPane fx:id="root"
+            prefWidth="1100.0" prefHeight="700.0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controladores.AdminRootController">
+
+    <!-- ───── Barra superior ───── -->
+    <top>
+        <ToolBar>
+            <items>
+                <Label text="Panel Administrativo" styleClass="title" />
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Button text="Cerrar sesión" onAction="#handleLogout" />
+            </items>
+        </ToolBar>
+    </top>
+
+
+
+    <!-- ───── Contenido dinámico ───── -->
+    <center>
+        <StackPane fx:id="contentPane" BorderPane.alignment="CENTER"/>
+    </center>
+
+    <!-- ───── Barra de estado ───── -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="6.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Admin:"/>
+                <Label fx:id="lblAdminName" text="—"/>
+            </children>
+            <padding>
+                <Insets top="5" right="12" bottom="5" left="12"/>
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>
